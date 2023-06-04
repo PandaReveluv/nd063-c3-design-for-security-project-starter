@@ -11,7 +11,7 @@ From AWS Security Hub
   - We have "Ensure no security groups allow ingress from 0.0.0.0/0 to port 22" which said that the Security Group is allow all connect to port 22 (ssh), and this Security Group is currently used by "Web Service Instance - C3" instance so everyone from the Internet can access to port 22 of this instance.
   => Recommendations: we should only open the port that the "Web Service Instance - C3" is using (like 80 for http or 443 for https) and restricted all other ports if not needed ("least privilege" principle), and always restricted access to port 22 and 3389 because the attacker can do the remote code execution attack by using these 2 ports.
  * AWS Foundational Security Best Practices v1.0.0
-  - We have "S3 buckets should require requests to use Secure Socket Layer" which said that we should connect to S3 bucket through HTTPS (SSL). Currently the 2 buckets "Free Recipes" and "Secret Recipes" is not using SSL connection, so the transit is not secured.
+  - We have "S3 buckets should require requests to use Secure Socket Layer" which said that we should connect to S3 bucket through HTTPS (SSL). Currently, the 2 buckets "Free Recipes" and "Secret Recipes" is not using SSL connection, so the transit is not secured.
   => Recommendations: we can add policy to deny all connect not using Secure Socket Layer (SSL).
 
 From Amazon Inspector
