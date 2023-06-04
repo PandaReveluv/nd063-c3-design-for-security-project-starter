@@ -1,0 +1,19 @@
+Based on the architecture diagram, and the steps you have taken so far to upload data and access the application web service, identify at least 2 obvious poor practices as it relates to security.  Include justification.
+
+# Poor practice 1
+The first poor practice that we can see in the diagram is deploying the
+"Web Service Instance" directly in the Public Subnet. By doing this, everyone
+in the Internet can access directly to the Instance.
+=> To prevent this poor practice,we can deploy it to the Private Subnet and then
+use the Public NAT Gateway,so that the Instance in private subnets can connect
+to the internet and userfrom the Internet can not connect directly to the Instance.
+
+# Poor practice 2
+The second poor practice that we can see in the diagram is the S3 bucket policy is
+not follow "least privilege" principle. As we can see in the "InstanceRolePolicy-C3",
+it allows all action in any S3 resources, which means with this policy,
+the Web Service Instance can access to the Free Recipes and Secret Recipes.
+=> To prevent this poor practice, we can change the policy for the Web Service Instance
+to only allow get action in Free Recipes bucket. With this policy, even if the
+attackers can get the credential to access to S3 service, they will only get
+the objects in the Free Recipes bucket and the Secret Recipes bucket will be unharmed.
